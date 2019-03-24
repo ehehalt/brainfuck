@@ -4,8 +4,6 @@ import (
   "fmt"
   "io/ioutil"
   "os"
-
-  "github.com/ehehalt/brainfuck.go/machine"
 )
 
 func main() {
@@ -17,6 +15,9 @@ func main() {
     os.Exit(-1)
   }
 
-  m := machine.NewMachine(string(code), os.Stdin, os.Stdout)
+  compiler := NewCompiler(string(code))
+  instructions := compiler.Compile()
+
+  m := NewMachine(instructions, os.Stdin, os.Stdout)
   m.Execute()
 }
