@@ -4,6 +4,8 @@ import (
   "fmt"
   "io/ioutil"
   "os"
+
+  "github.com/ehehalt/brainfuck/interpreter"
 )
 
 func main() {
@@ -15,6 +17,6 @@ func main() {
     os.Exit(-1)
   }
 
-  m := NewMachine(string(code), os.Stdin, os.Stdout)
+  m := interpreter.NewMachine(string(code), os.Stdin, os.Stdout)
   m.Execute()
 }

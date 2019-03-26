@@ -5,6 +5,8 @@ import (
   "io/ioutil"
   "os"
   "strings"
+
+  "github.com/ehehalt/brainfuck/virtualmachine"
 )
 
 func main() {
@@ -22,7 +24,7 @@ func main() {
     os.Exit(-1)
   }
 
-  compiler := NewCompiler(string(code))
+  compiler := virtualmachine.NewCompiler(string(code))
   instructions := compiler.Compile()
 
   fmt.Println(PreCode())
@@ -30,27 +32,27 @@ func main() {
   lvl := 1
   for _, ins := range instructions {
     switch ins.Type {
-    case Left:
+    case virtualmachine.Left:
       fmt.Println(strings.Repeat(" ", lvl*2), "machine.left(", ins.Argument, ")")
-    case Right:
+    case virtualmachine.Right:
       fmt.Println(strings.Repeat(" ", lvl*2), "machine.right(", ins.Argument, ")")
-    case Plus:
+    case virtualmachine.Plus:
       fmt.Println(strings.Repeat(" ", lvl*2), "machine.inc(", ins.Argument, ")")
-    case Minus:
+    case virtualmachine.Minus:
       fmt.Println(strings.Repeat(" ", lvl*2), "machine.dec(", ins.Argument, ")")
-    case JumpIfZero:
+    case virtualmachine.JumpIfZero:
       fmt.Println(strings.Repeat(" ", lvl*2), "for machine.get() != 0 {")
-    case JumpIfNotZero:
+    case virtualmachine.JumpIfNotZero:
       fmt.Println(strings.Repeat(" ", (lvl-1)*2), "}")
-    case PutChar:
+    case virtualmachine.PutChar:
       fmt.Println(strings.Repeat(" ", lvl*2), "machine.out()")
     default:
       fmt.Println(strings.Repeat(" ", lvl*2), ins)
     }
     switch ins.Type {
-    case JumpIfZero:
+    case virtualmachine.JumpIfZero:
       lvl++
-    case JumpIfNotZero:
+    case virtualmachine.JumpIfNotZero:
       lvl--
     }
   }

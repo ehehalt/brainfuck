@@ -4,6 +4,8 @@ import (
   "fmt"
   "io/ioutil"
   "os"
+
+  "github.com/ehehalt/brainfuck/virtualmachine"
 )
 
 func main() {
@@ -15,9 +17,9 @@ func main() {
     os.Exit(-1)
   }
 
-  compiler := NewCompiler(string(code))
+  compiler := virtualmachine.NewCompiler(string(code))
   instructions := compiler.Compile()
 
-  m := NewMachine(instructions, os.Stdin, os.Stdout)
+  m := virtualmachine.NewMachine(instructions, os.Stdin, os.Stdout)
   m.Execute()
 }
