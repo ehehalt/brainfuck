@@ -4,16 +4,16 @@ Brainf\*ck Interpreter in Go. Based on the article [A Virtual Brainfuck Machine 
 
 Times to calculate the mandelbrot sample on a MacBook Pro with Go 1.12.1:
 
-| type            | time   |
-|:----------------|-------:|
-| interpreter     | 52.16s |
-| virtual machine | 10.41s |
-| compiler        |  2.94s |
+| type              | time   |
+|:------------------|-------:|
+| bf-interpreter    | 52.16s |
+| bf-virtualmachine | 10.41s |
+| bf-compiler       |  2.94s |
 
 The compiler variant (not in the article) generates Go code from the mandelbrot sample. This could be compiled as executable:
 
 ```bash
-compiler mandelbrot.bf > mandelbrot.go && go build mandelbrot.go
+bf-compiler mandelbrot.bf > mandelbrot.go && go build mandelbrot.go
 time ./mandelbrot
 ```
 
