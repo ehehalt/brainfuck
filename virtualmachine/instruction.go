@@ -1,4 +1,4 @@
-package main
+package virtualmachine
 
 type InsType byte
 

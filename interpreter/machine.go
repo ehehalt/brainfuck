@@ -1,6 +1,6 @@
 // Brainf*uck - machine.go
 
-package main
+package interpreter
 
 import (
   "io"
